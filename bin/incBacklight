@@ -1,0 +1,6 @@
+#!/bin/sh
+
+
+brightnessctl sq +1% 
+notify-send "Increased Backlight $(sb-backlight)" -r 1235
+onBacklightChange

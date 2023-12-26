@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Define the directory containing the images
+directory=/home/immortal/Pictures/Wallpapers/Anime/Landscape/
+
+# Check if the directory exists
+if [ -d "$directory" ]; then
+    # Use find to get a list of image files in the directory and shuffle them
+    image=$(find "$directory" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | shuf -n 1)
+    
+    # Check if any image was found
+    if [ -n "$image" ]; then
+        echo "Wallpaper Set to: $directory$image"
+        echo "xwallpaper --stretch "$image"" > ~/.local/src/scripts/wall
+        xwallpaper --stretch "$image"
+        # You can use this image variable to do something, like set it as wallpaper, etc.
+        # For example, to set the image as wallpaper using feh (if installed):
+        # feh --bg-scale "$image"
+    else
+        echo "No images found in $directory"
+    fi
+else
+    echo "Directory $directory does not exist"
+fi
+

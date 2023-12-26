@@ -1,0 +1,6 @@
+#!/bin/sh
+
+
+pactl set-sink-volume @DEFAULT_SINK@ +5%
+notify-send "Volume Increased $(sb-volume)" -r 1234
+onVolChange

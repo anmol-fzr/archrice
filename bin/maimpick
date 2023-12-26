@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# variables
+output="Screenshot-$(date '+%Y-%m-%d_%H:%M:%S').png"
+path="~/Pictures/Screenshot/"
+xclip_cmd="xclip -sel clip -t image/png"
+window="$(xdotool getactivewindow)"
+
+dmenufont="JetBrains Mono:size=16";
+color_sel="#1E1E2E";
+bg_sel="#B4BEFE";
+color_norm="#CDD6F4";
+# variables
+
+case "$(printf "A Selected Area\\nCurrent Window\\nFull Screen\\nA Selected Area (COPY)\\nCurrent Window (COPY)\\nFull Screen (COPY)" | dmenu -l 6 -fn "${dmenufont}"  -nf "${color_norm}" -sb "${bg_sel}" -sf "${color_sel}"  -i -p "Screenshot which area?")" in
+    "A Selected Area") maim -u -s ~/Pictures/Screenshot/"${output}" ;;
+    "Current Window") maim -q -d 0.2 -i "$(xdotool getactivewindow)" ~/Pictures/Screenshot/"${output}" ;;
+    "Full Screen") maim -q -d 0.2 ~/Pictures/Screenshot/"${output}" ;;
+    "A Selected Area (COPY)") maim -u -s | ${xclip_cmd} ;;
+    "Current Window (COPY)") maim -q -d 0.2 -i "$(xdotool getactivewindow)" | ${xclip_cmd} ;;
+    "Full Screen (COPY)") maim -q -d 0.2 | ${xclip_cmd} ;;
+esac

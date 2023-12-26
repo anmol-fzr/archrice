@@ -1,0 +1,16 @@
+#!/bin/sh
+remove_cmd=$();
+dmenufont="JetBrains Mono:size=16";
+color_norm="#CDD6F4";
+bg_sel="#B4BEFE";
+color_sel="#1E1E2E";
+
+case "$(printf "Reset\\nRemove All\\nC++\\nRust\\nGO\\nTypeScript\\nReact/NextJS\n" | dmenu -l 7 -fn "${dmenufont}" -nf "${color_norm}" -sb "${bg_sel}" -sf "${color_sel}"   -i -p "Which Nvim Config ? ")" in
+    "Reset") ${remove_cmd}  && git clone https://github.com/nvchad/nvchad ~/.config/nvim/ --depth=1 ;;
+    "Remove All") ${remove_cmd}  && notify-send "Removed All neovim Configurations" ;;
+    "C++") ${remove_cmd}  && cp -r  ~/.local/src/nvim-configs/nvim-cpp ~/.config/nvim/ && notify-send "Switched to C++ Configurations" ;;
+    "Rust") ${remove_cmd}  && cp -r  ~/.local/src/nvim-configs/nvim-rust ~/.config/nvim/ && notify-send "Switched Rust Configurations" ;;
+    "React/NextJS") ${remove_cmd}  && cp -r  ~/.local/src/nvim-configs/nvim-nextjs ~/.config/nvim/ && notify-send "Switched React/NextJS Configurations" ;;
+    "GO") ${remove_cmd}  && cp -r  ~/.local/src/nvim-configs/nvim-go ~/.config/nvim/ && notify-send "Switched Go Configurations" ;;
+    "TypeScript") ${remove_cmd}  && cp -r  ~/.local/src/nvim-configs/nvim-js-ts ~/.config/nvim/ && notify-send "Switched to TypeScript Configurations" ;;
+esac
