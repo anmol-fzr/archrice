@@ -2,8 +2,8 @@
 pactl set-sink-mute @DEFAULT_SINK@ toggle
 val="$(pactl get-sink-mute @DEFAULT_SINK@ | cut -d " " -f 2)"
 if [ "$val" = "yes" ]; then
-    notify-send "Volume Muted $(sb-volume)" -r 1234
+    notify-send "Volume Muted $(sb-volume)" -r 1234 -u low -t 750
 else
-    notify-send "Volume Unmuted $(sb-volume)" -r 1234
-fi
+    notify-send "Volume Unmuted $(sb-volume)" -r 1234 -u low -t 750
+ fi
 onVolChange

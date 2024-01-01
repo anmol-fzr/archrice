@@ -1,5 +1,5 @@
 #!/bin/sh
-remove_cmd=$();
+remove_cmd=$(rm -rf ~/.config/nvim ~/.local/share/nvim/);
 dmenufont="JetBrains Mono:size=16";
 color_norm="#CDD6F4";
 bg_sel="#B4BEFE";

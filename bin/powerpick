@@ -1,14 +1,12 @@
 #!/bin/sh
 
-remove_cmd=$(rm -rf ~/.local/share/nvim && rm -rf ~/.config/nvim);
 dmenufont="JetBrains Mono:size=16";
 color_norm="#CDD6F4";
 bg_sel="#B4BEFE";
 color_sel="#1E1E2E";
 
-case "$(printf "Reboot\\nPower Off\\nLogout\\n" | dmenu -l 3 -fn "${dmenufont}" -nf "${color_norm}" -sb "${bg_sel}" -sf "${color_sel}"   -i -p "Which Nvim Config ?")" in
+case "$(printf "Reboot\\nPower Off\\nLogout\\n" | dmenu -l 3 -fn "${dmenufont}" -nf "${color_norm}" -sb "${bg_sel}" -sf "${color_sel}"   -i -p "Choose one")" in
     "Reboot") reboot ;;
-    "Power Off") poweroff  ;;
-    "Logout") killall dwm  ;;
-
+    "Power Off") poweroff ;;
+    "Logout") killall dwm && logout ;;
 esac

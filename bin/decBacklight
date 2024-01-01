@@ -2,5 +2,5 @@
 
 
 brightnessctl sq 1%- 
-notify-send "Decreased Backlight $(sb-backlight)" -r 1235
+notify-send "Decreased Backlight $(sb-backlight)" -r 1235 -u low -t 750
 onBacklightChange

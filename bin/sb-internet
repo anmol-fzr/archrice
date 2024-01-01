@@ -4,18 +4,6 @@
 # Show 🌐 if connected to ethernet or ❎ if none.
 # Show 🔒 if a vpn connection is active
 
-case $BLOCK_BUTTON in
-	1) "$TERMINAL" -e nmtui; pkill -RTMIN+4 dwmblocks ;;
-	3) notify-send "🌐 Internet module" "\- Click to connect
-❌: wifi disabled
-📡: no wifi connection
-📶: wifi connection with quality
-❎: no ethernet
-🌐: ethernet working
-🔒: vpn is active
-" ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
-esac
 
 # Wifi
 if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ] ; then
@@ -30,4 +18,4 @@ fi
 # TUN
 [ -n "$(cat /sys/class/net/tun*/operstate 2>/dev/null)" ] && tunicon=" 🔒"
 
-printf "%s%s%s\n" "$wifiicon" "$ethericon" "$tunicon"
+printf "%s\n" "$wifiicon" "$ethericon"
