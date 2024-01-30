@@ -1,0 +1,57 @@
+#!/bin/sh
+dmenufont="JetBrains Mono:size=16";
+color_norm="#CDD6F4";
+bg_sel="#B4BEFE";
+color_sel="#1E1E2E";
+not_id="123213"
+not_time="750"
+
+after(){
+  rm -rf ~/.local/share/nvim/;
+}
+
+
+reset(){
+  notify-send "Reseting to Defaults" -r $not_id -u low -t $not_time
+  git clone https://github.com/nvchad/nvchad ~/.config/nvim/ --depth=1;
+  notify-send "Reset to Defaults Completed" -r $not_id -u low -t $not_time
+  after
+}
+
+go(){
+  notify-send "Switching to Go" -r $not_id -u low -t $not_time
+  cp -rL /home/immortal/.local/src/nvim-deltas/go/custom ~/.config/nvim/lua/
+  notify-send "Switched to Go Successfully" -r $not_id -u low -t $not_time
+  after
+}
+
+react(){
+  notify-send "Switching to React" -r $not_id -u low -t $not_time
+  cp -rL /home/immortal/.local/src/nvim-deltas/react/custom ~/.config/nvim/lua/
+  notify-send "Switched to React Successfully" -r $not_id -u low -t $not_time
+  after
+}
+
+
+ts(){
+  notify-send "Switching to TypeScript" -r $not_id -u low -t $not_time
+  cp -rL /home/immortal/.local/src/nvim-deltas/ts/custom ~/.config/nvim/lua/
+  notify-send "Switched to TypeScript Successfully" -r $not_id -u low -t $not_time
+  after
+}
+
+js(){
+  notify-send "Switching to TypeScript" -r $not_id -u low -t $not_time
+  cp -rL /home/immortal/.local/src/nvim-deltas/js/custom ~/.config/nvim/lua/
+  notify-send "Switched to TypeScript Successfully" -r $not_id -u low -t $not_time
+  after
+}
+
+
+case "$(printf "Reset\\nReactJS\\nTypeScript\\nGo\\n" | dmenu -l 3 -fn "${dmenufont}" -nf "${color_norm}" -sb "${bg_sel}" -sf "${color_sel}"   -i -p "Which Nvim Config ? ")" in
+    "Reset") reset ;;
+    "ReactJS") react ;;
+    "TypeScript") js ;;
+    "Go") go ;;
+esac
+    # "TypeScript") ${remove_cmd}  && cp -r  ~/.local/src/nvim-configs/nvim-js-ts ~/.config/nvim/ && notify-send "Switched to TypeScript Configurations" ;;
